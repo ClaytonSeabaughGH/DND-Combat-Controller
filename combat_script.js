@@ -31,7 +31,7 @@
 });
 
         // Add a new monster to the monster list
-        document.getElementById('addMonsterBtn').addEventListener('click', function() {
+    document.getElementById('addMonsterBtn').addEventListener('click', function() {
             const name = prompt('Enter monster name:');
             const hp = prompt('Enter monster HP (current/total):');
             if (name && hp) {
@@ -41,7 +41,7 @@
             }
         });
 
-        document.getElementById('addPlayerBtn').addEventListener('click', function() {
+    document.getElementById('addPlayerBtn').addEventListener('click', function() {
     const name = prompt('Enter player name:');
     const hp = prompt('Enter player HP (current/total):');
     if (name && hp) {
@@ -69,6 +69,20 @@
             </div>
         `;
         document.getElementById('playerList').appendChild(newPlayer);
+    }
+});
+
+        document.getElementById('playerList').addEventListener('change', function(event) {
+    if (event.target.classList.contains('death-save-success') || event.target.classList.contains('death-save-fail')) {
+        const li = event.target.closest('li');
+        const successChecks = li.querySelectorAll('.death-save-success:checked').length;
+        const failChecks = li.querySelectorAll('.death-save-fail:checked').length;
+
+        if (successChecks === 3) {
+            alert(`${li.textContent.split(' - ')[0]} has stabilized!`);
+        } else if (failChecks === 3) {
+            alert(`${li.textContent.split(' - ')[0]} has died!`);
+        }
     }
 });
 

@@ -155,7 +155,8 @@
     </main>
 
     <script>
-     // Manual input iniiative
+    
+    // Manual input iniiative
      document.getElementById('addCharacterBtn').addEventListener('click', function() {
     const name = prompt('Enter character name:');
     const initiative = prompt('Enter initiative:');
@@ -187,6 +188,7 @@
     }
 });
 
+//--------------------------------------------------------------------------------------------//
          // Add a new monster to the monster list
         document.getElementById('addMonsterBtn').addEventListener('click', function() {
             const name = prompt('Enter monster name:');
@@ -204,21 +206,40 @@
             }
         });
 
+//------------------------------------------------------------------------------------------//
         // Add a new player
         document.getElementById('addPlayerBtn').addEventListener('click', function() {
-            const name = prompt('Enter player name:');
-            const hp = prompt('Enter player HP (current/total):');
-            if (name && hp) {
-                const newPlayer = document.createElement('li');
-                newPlayer.innerHTML = `
-                    ${name} - HP: <span class="hp">${hp.split('/')[0]}</span>/${hp.split('/')[1]}
-                    <input type="number" class="hp-input" placeholder="Enter +/- value">
-                    <button class="apply-hp">Apply</button>
-                `;
-                document.getElementById('playerList').appendChild(newPlayer);
-            }
-        });
+    const name = prompt('Enter player name:');
+    const hp = prompt('Enter player HP (current/total):');
+    if (name && hp) {
+        const newPlayer = document.createElement('li');
+        newPlayer.innerHTML = `
+            ${name} - HP: <span class="hp">${hp.split('/')[0]}</span>/${hp.split('/')[1]}
+            <button class="increase-hp">+</button>
+            <button class="decrease-hp">-</button>
+            <input type="number" class="hp-input" placeholder="Enter +/- value">
+            <button class="apply-hp">Apply</button>
+            <div class="death-saves">
+                <span>Death Saves:</span>
+                <div class="saves">
+                    <label>Success:</label>
+                    <input type="checkbox" class="death-save-success">
+                    <input type="checkbox" class="death-save-success">
+                    <input type="checkbox" class="death-save-success">
+                </div>
+                <div class="fails">
+                    <label>Failure:</label>
+                    <input type="checkbox" class="death-save-fail">
+                    <input type="checkbox" class="death-save-fail">
+                    <input type="checkbox" class="death-save-fail">
+                </div>
+            </div>
+        `;
+        document.getElementById('playerList').appendChild(newPlayer);
+    }
+});
 
+//-----------------------------------------------------------------------------------------//
         // Delegate events for HP application
         document.getElementById('playerList').addEventListener('click', function(event) {
             const target = event.target;
@@ -238,15 +259,20 @@
             }
 });
 
-        // Add a new action to the action list
-        document.getElementById('addActionBtn').addEventListener('click', function() {
-            const action = prompt('Enter action taken:');
-            if (action) {
-                const newAction = document.createElement('li');
-                newAction.textContent = action;
-                document.getElementById('actionList').appendChild(newAction);
-            }
-        });
+        // Death Saving Throw Success/Death
+        document.getElementById('playerList').addEventListener('change', function(event) {
+            if (event.target.classList.contains('death-save-success') || event.target.classList.contains('death-save-fail')) {
+                const li = event.target.closest('li');
+                const successChecks = li.querySelectorAll('.death-save-success:checked').length;
+                const failChecks = li.querySelectorAll('.death-save-fail:checked').length;
+
+            if (successChecks === 3) {
+            alert(`${li.textContent.split(' - ')[0]} has stabilized!`);
+             } else if (failChecks === 3) {
+                alert(`${li.textContent.split(' - ')[0]} has died!`);
+        }
+    }
+});
 
         // Delegate HP increase and decrease functionality
         document.getElementById('playerList').addEventListener('click', function(event) {
@@ -270,6 +296,16 @@
             }
         });
 
+//---------------------------------------------------------------------------------------//
+         // Add a new action to the action list
+         document.getElementById('addActionBtn').addEventListener('click', function() {
+            const action = prompt('Enter action taken:');
+            if (action) {
+                const newAction = document.createElement('li');
+                newAction.textContent = action;
+                document.getElementById('actionList').appendChild(newAction);
+            }
+        });
     </script>
 </body>
 </html>
