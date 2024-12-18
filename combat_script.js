@@ -1,146 +1,97 @@
-/* styles.css */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
+ // Manual input iniiative
+ document.getElementById('addCharacterBtn').addEventListener('click', function() {
+    const name = prompt('Enter character name:');
+    const initiative = prompt('Enter initiative:');
 
-/* Header Styling */
-header {
-    background: linear-gradient(135deg, #4a90e2, #1c3d69);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 5px solid #333;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 2rem;
-    letter-spacing: 1px;
-}
+    // Ensure the entered initiative is a number
+    const initiativeValue = parseInt(initiative);
 
-/* Main Content Area */
-main {
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    border-radius: 10px;
-}
+    if (name && !isNaN(initiativeValue)) {
+        const newCharacter = document.createElement('li');
+        newCharacter.textContent = `${name} - Initiative: ${initiativeValue}`;
 
-/* Tracker Layout */
-.tracker {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-}
+        // Add the new character to the list
+        const initiativeList = document.getElementById('initiativeList');
+        initiativeList.appendChild(newCharacter);
 
-/* Section Styling */
-.section {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease;
-}
+        // Sort the list based on initiative value in descending order
+        const sortedList = Array.from(initiativeList.children)
+            .sort((a, b) => {
+                const aValue = parseInt(a.textContent.split(': ')[1]);
+                const bValue = parseInt(b.textContent.split(': ')[1]);
+                return bValue - aValue; // Descending order
+            });
 
-.section:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-}
+        // Clear the list and re-append the sorted items
+        initiativeList.innerHTML = '';
+        sortedList.forEach(item => initiativeList.appendChild(item));
+    } else {
+        alert('Please enter a valid initiative value.');
+    }
+});
 
-.section h2 {
-    margin-top: 0;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #4a90e2;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        // Add a new monster to the monster list
+        document.getElementById('addMonsterBtn').addEventListener('click', function() {
+            const name = prompt('Enter monster name:');
+            const hp = prompt('Enter monster HP (current/total):');
+            if (name && hp) {
+                const newMonster = document.createElement('li');
+                newMonster.textContent = `${name} - HP: ${hp}`;
+                document.getElementById('monsterList').appendChild(newMonster);
+            }
+        });
 
-/* List Styling */
-.initiative-list, .monster-list, #playerList, #actionList {
-    list-style-type: none;
-    padding: 0;
-}
+        // Add a new player
+        document.getElementById('addPlayerBtn').addEventListener('click', function() {
+            const name = prompt('Enter player name:');
+            const hp = prompt('Enter player HP (current/total):');
+            if (name && hp) {
+                const newPlayer = document.createElement('li');
+                newPlayer.innerHTML = `
+                    ${name} - HP: <span class="hp">${hp.split('/')[0]}</span>/${hp.split('/')[1]}
+                    <input type="number" class="hp-input" placeholder="Enter +/- value">
+                    <button class="apply-hp">Apply</button>
+                `;
+                document.getElementById('playerList').appendChild(newPlayer);
+            }
+        });
 
-.initiative-list li, .monster-list li, #playerList li, #actionList li {
-    background-color: #f9f9f9;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
+        // Delegate events for HP application
+        document.getElementById('playerList').addEventListener('click', function(event) {
+            const target = event.target;
 
-.initiative-list li:hover, .monster-list li:hover, #playerList li:hover, #actionList li:hover {
-    background-color: #e4e4e4;
-    transform: translateX(5px);
-}
+            // Handle Apply HP button
+            if (target.classList.contains('apply-hp')) {
+                const li = target.closest('li');
+                const hpSpan = li.querySelector('.hp');
+                const input = li.querySelector('.hp-input');
+                const change = parseInt(input.value);
 
-/* Button Styling */
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+                if (!isNaN(change)) {
+                    const newHp = Math.max(0, parseInt(hpSpan.textContent) + change);
+                    hpSpan.textContent = newHp;
+                    input.value = ''; // Clear input after applying
+                }
+            }
+});
 
-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
+        // Add a new action to the action list
+        document.getElementById('addActionBtn').addEventListener('click', function() {
+            const action = prompt('Enter action taken:');
+            if (action) {
+                const newAction = document.createElement('li');
+                newAction.textContent = action;
+                document.getElementById('actionList').appendChild(newAction);
+            }
+        });
 
-button:active {
-    transform: scale(1);
-}
-
-/* Inputs for HP */
-input[type="number"].hp-input {
-    padding: 5px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 80px;
-    margin-right: 10px;
-    transition: border-color 0.3s ease;
-}
-
-input[type="number"].hp-input:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-/* Action List Styling */
-#actionList {
-    margin-top: 20px;
-}
-
-/* Add some extra styles for character HP adjustments */
-button.increase-hp, button.decrease-hp {
-    background-color: #28a745;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-button.increase-hp:hover {
-    background-color: #218838;
-}
-
-button.decrease-hp:hover {
-    background-color: #c82333;
-}
-
-button.increase-hp:active, button.decrease-hp:active {
-    transform: scale(0.95);
-}
-
+        // Delegate HP increase and decrease functionality
+        document.getElementById('playerList').addEventListener('click', function(event) {
+            if (event.target.classList.contains('increase-hp')) {
+                const hpSpan = event.target.parentElement.querySelector('.hp');
+                hpSpan.textContent = parseInt(hpSpan.textContent) + 1;
+            } else if (event.target.classList.contains('decrease-hp')) {
+                const hpSpan = event.target.parentElement.querySelector('.hp');
+                hpSpan.textContent = Math.max(0, parseInt(hpSpan.textContent) - 1);
+            }
+        });
