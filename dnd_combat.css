@@ -80,6 +80,21 @@ main {
     transform: translateX(5px);
 }
 
+.death-saves {
+    margin-top: 10px;
+}
+
+.death-saves .saves, .death-saves .fails {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.death-saves label {
+    font-weight: bold;
+}
+
+
 /* Button Styling */
 button {
     background-color: #007BFF;

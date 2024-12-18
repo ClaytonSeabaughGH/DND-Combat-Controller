@@ -41,20 +41,37 @@
             }
         });
 
-        // Add a new player
         document.getElementById('addPlayerBtn').addEventListener('click', function() {
-            const name = prompt('Enter player name:');
-            const hp = prompt('Enter player HP (current/total):');
-            if (name && hp) {
-                const newPlayer = document.createElement('li');
-                newPlayer.innerHTML = `
-                    ${name} - HP: <span class="hp">${hp.split('/')[0]}</span>/${hp.split('/')[1]}
-                    <input type="number" class="hp-input" placeholder="Enter +/- value">
-                    <button class="apply-hp">Apply</button>
-                `;
-                document.getElementById('playerList').appendChild(newPlayer);
-            }
-        });
+    const name = prompt('Enter player name:');
+    const hp = prompt('Enter player HP (current/total):');
+    if (name && hp) {
+        const newPlayer = document.createElement('li');
+        newPlayer.innerHTML = `
+            ${name} - HP: <span class="hp">${hp.split('/')[0]}</span>/${hp.split('/')[1]}
+            <button class="increase-hp">+</button>
+            <button class="decrease-hp">-</button>
+            <input type="number" class="hp-input" placeholder="Enter +/- value">
+            <button class="apply-hp">Apply</button>
+            <div class="death-saves">
+                <span>Death Saves:</span>
+                <div class="saves">
+                    <label>Success:</label>
+                    <input type="checkbox" class="death-save-success">
+                    <input type="checkbox" class="death-save-success">
+                    <input type="checkbox" class="death-save-success">
+                </div>
+                <div class="fails">
+                    <label>Failure:</label>
+                    <input type="checkbox" class="death-save-fail">
+                    <input type="checkbox" class="death-save-fail">
+                    <input type="checkbox" class="death-save-fail">
+                </div>
+            </div>
+        `;
+        document.getElementById('playerList').appendChild(newPlayer);
+    }
+});
+
 
         // Delegate events for HP application
         document.getElementById('playerList').addEventListener('click', function(event) {
