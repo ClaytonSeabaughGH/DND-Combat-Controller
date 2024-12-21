@@ -1,65 +1,86 @@
 
-/* styles.css */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: 'Poppins', sans-serif;
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
-/* Header Styling */
 header {
-    background: linear-gradient(135deg, #e24a4a, #691c1c);
-    color: #050000;
-    padding: 20px;
+    background: linear-gradient(135deg, #9b111e, #4a0d0d);
+    color: white;
     text-align: center;
-    border-bottom: 5px solid #333;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     font-size: 2rem;
     letter-spacing: 1px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-/* Main Content Area */
 main {
+    margin: 20px auto;
+    max-width: 900px;
     padding: 20px;
-    background-color: #fff;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #030000;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    border-radius: 10px;
 }
 
-/* Tracker Layout */
 .tracker {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
-/* Section Styling */
 .section {
-    background-color: #ffffff;
-    padding: 25px;
+    background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .section:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.section h2 {
-    margin-top: 0;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #080000;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+button {
+    background-color: #9b111e;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
 }
+
+button:hover {
+    background-color: #b22222;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.initiative-list li {
+    border-left: 6px solid #9b111e;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.initiative-list li:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
 
 /* List Styling */
 .initiative-list, .monster-list, #playerList, #actionList {
