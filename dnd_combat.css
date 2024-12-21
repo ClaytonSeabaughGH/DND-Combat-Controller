@@ -11,8 +11,8 @@ body {
 
 /* Header Styling */
 header {
-    background: linear-gradient(135deg, #4a90e2, #1c3d69);
-    color: #fff;
+    background: linear-gradient(135deg, #e24a4a, #691c1c);
+    color: #050000;
     padding: 20px;
     text-align: center;
     border-bottom: 5px solid #333;
@@ -20,6 +20,7 @@ header {
     font-size: 2rem;
     letter-spacing: 1px;
 }
+
 
 /* Main Content Area */
 main {
@@ -55,7 +56,7 @@ main {
     margin-top: 0;
     font-size: 1.6rem;
     font-weight: 600;
-    color: #4a90e2;
+    color: #080000;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -87,7 +88,7 @@ main {
 .death-saves .saves, .death-saves .fails {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 5px;    
 }
 
 .death-saves label {
@@ -97,7 +98,7 @@ main {
 
 /* Button Styling */
 button {
-    background-color: #007BFF;
+    background-color: #ff0000;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -109,7 +110,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #b30000;
     transform: scale(1.05);
 }
 
@@ -129,7 +130,7 @@ input[type="number"].hp-input {
 }
 
 input[type="number"].hp-input:focus {
-    border-color: #007BFF;
+    border-color: #ff0000;
     outline: none;
 }
 
@@ -140,7 +141,7 @@ input[type="number"].hp-input:focus {
 
 /* Add some extra styles for character HP adjustments */
 button.increase-hp, button.decrease-hp {
-    background-color: #28a745;
+    background-color: #000000;
     color: white;
     padding: 5px 10px;
     border-radius: 50%;
