@@ -17,6 +17,8 @@
                 <h2>Initiative Order</h2>
                 <ul id="initiativeList" class="initiative-list"></ul>
                 <button id="addCharacterBtn">Add Character</button>
+                <p id="currentTurn">No characters in the initiative list yet.</p>
+                <button id="nextTurnBtn">Next Turn</button>
             </div>
 
             <!-- Monster Management Section -->
@@ -195,11 +197,38 @@ document.getElementById('addCharacterBtn').addEventListener('click', function() 
     }
 });
 
-// Remove character from the initiative list
+    // Remove character from the initiative list
     document.getElementById('initiativeList').addEventListener('click', function(event) {
         if (event.target.classList.contains('remove-character')) {
             const listItem = event.target.parentElement;
             listItem.remove();
+    }
+});
+let currentTurnIndex = -1; // Initialize to -1 (no turn yet)
+
+function updateCurrentTurn() {
+    const initiativeList = document.querySelectorAll('#initiativeList li');
+    const currentTurnDisplay = document.getElementById('currentTurn');
+
+    if (initiativeList.length === 0) {
+        currentTurnDisplay.textContent = 'No characters in the initiative list yet.';
+        currentTurnIndex = -1; // Reset index if the list is empty
+        return;
+    }
+
+    currentTurnIndex = (currentTurnIndex + 1) % initiativeList.length; // Loop back to start
+    const currentCharacter = initiativeList[currentTurnIndex];
+    currentTurnDisplay.textContent = `Current Turn: ${currentCharacter.textContent.split(' - ')[0]}`;
+}
+
+document.getElementById('nextTurnBtn').addEventListener('click', updateCurrentTurn);
+
+// Automatically update the current turn whenever the initiative list is modified
+document.getElementById('initiativeList').addEventListener('DOMSubtreeModified', function () {
+    const initiativeList = document.querySelectorAll('#initiativeList li');
+    if (initiativeList.length > 0 && currentTurnIndex === -1) {
+        currentTurnIndex = 0; // Start at the first character
+        updateCurrentTurn();
     }
 });
 
