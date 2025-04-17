@@ -35,3 +35,17 @@ async function updatePlayerHp(playerId, newHp){
         fetchPlayers(); // Reload the player list after updating
     }
 }
+
+// Event listener for the apply HP button
+document.getElementById('playerList').addEventListener('click', async (event) => {
+    if (event.target.classList.contains('apply-hp')) {
+        const playerId = event.target.getAttribute('data-id');
+        const hpInput = document.querySelector('.hp-input[data-id="${playerID}"]');
+        const newHp = parseInt(hpInput.value);
+
+        if (!isNaN(newHp)) {
+            await updatePlayerHp(playerId, newHp);
+        }
+    }
+});
+
