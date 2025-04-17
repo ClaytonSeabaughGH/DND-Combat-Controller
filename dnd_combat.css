@@ -47,21 +47,6 @@ main {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.initiative-list li {
-    border-left: 6px solid #9b111e;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: white;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.3s;
-}
-
-.initiative-list li:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: scale(1.02);
-}
-
 
 /* List Styling */
 .initiative-list, .monster-list, #playerList, #actionList {
