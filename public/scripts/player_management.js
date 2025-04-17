@@ -9,7 +9,7 @@ async function fetchPlayers() {
     players.forEach(player => {
         const playerItem = document.createElement('li');
         playerItem.innerHTML = `
-      ${player.name} - HP: <span class="hp">${player.hp}</span>/${player.max_hp}
+      ${player.name} - HP: <span class="hp">${player.hp}</span>/${player.hp_total}
       <button class="increase-hp" data-id="${player.id}">+</button>
       <button class="decrease-hp" data-id="${player.id}">-</button>
       <input type="number" class="hp-input" data-id="${player.id}" placeholder="Enter +/- value">
