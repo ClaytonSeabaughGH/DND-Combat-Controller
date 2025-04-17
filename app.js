@@ -11,16 +11,22 @@ app.use(express.static(path.join(__dirname, 'public'))); // Serve static files (
 // Initialize Player SQLite database 
 const db = new sqlite3.Database('players.db');
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'DNDCombat.html'));
+});
+
+
 // Route to get player's data
 app.get('/players', (req, res) => {
-    db.all('SELECT * FROM players', [], (err, rows) => {
-      if (err) {
-        res.status(500).send({ error: err.message });
-        return;
-      }
-      res.json(rows);
-    });
+  db.all('SELECT id, name, hp_current AS hp, hp_total AS max_hp FROM players', [], (err, rows) => {
+    if (err) {
+      res.status(500).send({ error: err.message });
+      return;
+    }
+    res.json(rows);
   });
+});
+
 
 // Route to update a player's HP
 app.post('/update-player', (req, res) => {
