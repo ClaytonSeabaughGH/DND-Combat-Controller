@@ -19,3 +19,19 @@ async function fetchPlayers() {
     playerList.appendChild(playerItem);
     });
 }
+
+// Function to update a player's HP via backend
+async function updatePlayerHp(playerId, newHp){
+    const response = await fetch('/update-player', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: playerId, newHp }),
+    });
+
+    const result = await response.json();
+    if (result.message) {
+        fetchPlayers(); // Reload the player list after updating
+    }
+}
