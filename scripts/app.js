@@ -20,4 +20,17 @@ app.get('/players', (req, res) => {
       res.json(rows);
     });
   });
-  
+
+// Route to update a player's HP
+app.post('/update-player', (req, res) => {
+    const { id, newHp } = req.body;
+    const query = 'UPDATE players SET hp = ? WHERE id = ?';
+
+    db.run(query, [newHp, id], function(err) {
+        if (err) {
+            res.status(500).send({ error: err.message});
+            return;
+        }
+        res.send({ message: 'Player HP updated successfully'})
+    });
+});
