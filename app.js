@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 // Route to get player's data
 app.get('/players', (req, res) => {
-  db.all('SELECT id, name, hp_current AS hp, hp_total AS max_hp FROM players', [], (err, rows) => {
+  db.all('SELECT id, name, hp, hp_total FROM players', [], (err, rows) => {
     if (err) {
       res.status(500).send({ error: err.message });
       return;
@@ -26,6 +26,7 @@ app.get('/players', (req, res) => {
     res.json(rows);
   });
 });
+
 
 
 // Route to update a player's HP
