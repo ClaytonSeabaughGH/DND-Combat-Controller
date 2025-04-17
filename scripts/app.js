@@ -34,3 +34,8 @@ app.post('/update-player', (req, res) => {
         res.send({ message: 'Player HP updated successfully'})
     });
 });
+
+// Start the server
+app.listen(port, () => {
+    console.log('Server running at http://localhost${port}')
+});
