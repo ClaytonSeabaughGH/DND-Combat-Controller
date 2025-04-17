@@ -40,7 +40,7 @@ async function updatePlayerHp(playerId, newHp){
 document.getElementById('playerList').addEventListener('click', async (event) => {
     if (event.target.classList.contains('apply-hp')) {
         const playerId = event.target.getAttribute('data-id');
-        const hpInput = document.querySelector('.hp-input[data-id="${playerID}"]');
+        const hpInput = document.querySelector(`.hp-input[data-id="${playerId}"]`);
         const newHp = parseInt(hpInput.value);
 
         if (!isNaN(newHp)) {
