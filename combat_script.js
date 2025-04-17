@@ -194,11 +194,19 @@ document.getElementById('playerList').addEventListener('click', function (event)
 });
 //---------------------------------------------------------------------------------------//
          // Add a new action to the action list
-         document.getElementById('addActionBtn').addEventListener('click', function() {
-            const action = prompt('Enter action taken:');
-            if (action) {
-                const newAction = document.createElement('li');
-                newAction.textContent = action;
-                document.getElementById('actionList').appendChild(newAction);
+document.getElementById('addActionBtn').addEventListener('click', function() {
+    const action = prompt('Enter action taken:');
+        if (action) {
+            const newAction = document.createElement('li');
+            newAction.textContent = action;
+            document.getElementById('actionList').appendChild(newAction);
             }
         });
+        
+        // Remove action from the action list
+document.getElementById('actionList').addEventListener('click', function (event) {
+    if (event.target.classList.contains('removeActionBtn')) {
+        const listItem = event.target.parentElement;
+        listItem.remove();
+    }
+});
