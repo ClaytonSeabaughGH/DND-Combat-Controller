@@ -8,9 +8,7 @@ db.serialize(() => {
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     hp_current INTEGER NOT NULL,
-    hp_total INTEGER NOT NULL,
-    death_save_success INTEGER DEFAULT 0,
-    death_save_fail INTEGER DEFAULT 0
+    hp_total INTEGER NOT NULL
   )`);
 
   const stmt = db.prepare("INSERT INTO players (name, hp_current, hp_total) VALUES (?, ?, ?)");
