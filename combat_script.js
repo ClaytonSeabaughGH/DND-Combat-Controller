@@ -7,13 +7,14 @@ document.getElementById('addCharacterBtn').addEventListener('click', function() 
     const initiativeValue = parseInt(initiative);
 
     if (name && !isNaN(initiativeValue)) {
+        // Create a new character element
         const newCharacter = document.createElement('li');
         newCharacter.innerHTML = `
             ${name} - Initiative: ${initiativeValue}
             <button class="remove-character">Remove</button>
         `;
 
-        // Add the new character to the list
+        // Add the new character to the initiative list
         const initiativeList = document.getElementById('initiativeList');
         initiativeList.appendChild(newCharacter);
 
@@ -32,15 +33,18 @@ document.getElementById('addCharacterBtn').addEventListener('click', function() 
     }
 });
 
-    // Remove character from the initiative list
-    document.getElementById('initiativeList').addEventListener('click', function(event) {
-        if (event.target.classList.contains('remove-character')) {
-            const listItem = event.target.parentElement;
-            listItem.remove();
+// Remove character from the initiative list
+document.getElementById('initiativeList').addEventListener('click', function(event) {
+    if (event.target.classList.contains('remove-character')) {
+        const listItem = event.target.parentElement;
+        listItem.remove();
     }
 });
+
+// Track the current turn index
 let currentTurnIndex = -1; // Initialize to -1 (no turn yet)
 
+// Update the current turn
 function updateCurrentTurn() {
     const initiativeList = document.querySelectorAll('#initiativeList li');
     const currentTurnDisplay = document.getElementById('currentTurn');
@@ -56,6 +60,7 @@ function updateCurrentTurn() {
     currentTurnDisplay.textContent = `Current Turn: ${currentCharacter.textContent.split(' - ')[0]}`;
 }
 
+// Handle the next turn button click
 document.getElementById('nextTurnBtn').addEventListener('click', updateCurrentTurn);
 
 // Automatically update the current turn whenever the initiative list is modified
@@ -73,6 +78,7 @@ document.getElementById('addMonsterBtn').addEventListener('click', function () {
     const name = prompt('Enter monster name:');
     const hp = prompt('Enter monster HP (current/total):');
     if (name && hp) {
+        // Create a new monster element
         const newMonster = document.createElement('li');
         newMonster.innerHTML = `
             ${name} - HP: <span class="hp">${hp.split('/')[0]}</span>/${hp.split('/')[1]}
@@ -95,11 +101,12 @@ document.getElementById('monsterList').addEventListener('click', function (event
 });
 
 //------------------------------------------------------------------------------------------//
-        // Add a new player
+// Add a new player to the player list
 document.getElementById('addPlayerBtn').addEventListener('click', function() {
     const name = prompt('Enter player name:');
     const hp = prompt('Enter player HP (current/total):');
     if (name && hp) {
+        // Create a new player element
         const newPlayer = document.createElement('li');
         newPlayer.innerHTML = `
             ${name} - HP: <span class="hp">${hp.split('/')[0]}</span>/${hp.split('/')[1]}
@@ -128,7 +135,7 @@ document.getElementById('addPlayerBtn').addEventListener('click', function() {
     }
 });
 
-// Remove a player from the monster list
+// Remove a player from the player list
 document.getElementById('playerList').addEventListener('click', function (event) {
     if (event.target.classList.contains('remove-player')) {
         const listItem = event.target.parentElement;
@@ -137,75 +144,80 @@ document.getElementById('playerList').addEventListener('click', function (event)
 });
 
 //-----------------------------------------------------------------------------------------//
-        // Delegate events for HP application
-        document.getElementById('playerList').addEventListener('click', function(event) {
-            const target = event.target;
+// Delegate events for HP application (players)
+document.getElementById('playerList').addEventListener('click', function(event) {
+    const target = event.target;
 
-            // Handle Apply HP button
-            if (target.classList.contains('apply-hp')) {
-                const li = target.closest('li');
-                const hpSpan = li.querySelector('.hp');
-                const input = li.querySelector('.hp-input');
-                const change = parseInt(input.value);
+    // Handle Apply HP button
+    if (target.classList.contains('apply-hp')) {
+        const li = target.closest('li');
+        const hpSpan = li.querySelector('.hp');
+        const input = li.querySelector('.hp-input');
+        const change = parseInt(input.value);
 
-                if (!isNaN(change)) {
-                    const newHp = Math.max(0, parseInt(hpSpan.textContent) + change);
-                    hpSpan.textContent = newHp;
-                    input.value = ''; // Clear input after applying
-                }
-            }
-});
-
-        // Delegate HP increase and decrease functionality
-        document.getElementById('playerList').addEventListener('click', function(event) {
-            if (event.target.classList.contains('increase-hp')) {
-                const hpSpan = event.target.parentElement.querySelector('.hp');
-                hpSpan.textContent = parseInt(hpSpan.textContent) + 1;
-            } else if (event.target.classList.contains('decrease-hp')) {
-                const hpSpan = event.target.parentElement.querySelector('.hp');
-                hpSpan.textContent = Math.max(0, parseInt(hpSpan.textContent) - 1);
-            }
-        });
-
-        // Delegate HP increase and decrease functionality for monsters
-        document.getElementById('monsterList').addEventListener('click', function(event) {
-            if (event.target.classList.contains('increase-hp')) {
-                const hpSpan = event.target.parentElement.querySelector('.hp');
-                hpSpan.textContent = parseInt(hpSpan.textContent) + 1;
-            } else if (event.target.classList.contains('decrease-hp')) {
-                const hpSpan = event.target.parentElement.querySelector('.hp');
-                hpSpan.textContent = Math.max(0, parseInt(hpSpan.textContent) - 1);
-            }
-        });
-
-            // Death Saving Throw Success/Death
-        document.getElementById('playerList').addEventListener('change', function(event) {
-            if (event.target.classList.contains('death-save-success') || event.target.classList.contains('death-save-fail')) {
-                const li = event.target.closest('li');
-                const successChecks = li.querySelectorAll('.death-save-success:checked').length;
-                const failChecks = li.querySelectorAll('.death-save-fail:checked').length;
-
-            if (successChecks === 3) {
-            alert(`${li.textContent.split(' - ')[0]} has stabilized!`);
-             } else if (failChecks === 3) {
-                alert(`${li.textContent.split(' - ')[0]} has died!`);
+        if (!isNaN(change)) {
+            const newHp = Math.max(0, parseInt(hpSpan.textContent) + change);
+            hpSpan.textContent = newHp;
+            input.value = ''; // Clear input after applying
         }
     }
 });
+
+// Delegate HP increase and decrease functionality (players)
+document.getElementById('playerList').addEventListener('click', function(event) {
+    if (event.target.classList.contains('increase-hp')) {
+        const hpSpan = event.target.parentElement.querySelector('.hp');
+        hpSpan.textContent = parseInt(hpSpan.textContent) + 1;
+    } else if (event.target.classList.contains('decrease-hp')) {
+        const hpSpan = event.target.parentElement.querySelector('.hp');
+        hpSpan.textContent = Math.max(0, parseInt(hpSpan.textContent) - 1);
+    }
+});
+
+// Delegate HP increase and decrease functionality (monsters)
+document.getElementById('monsterList').addEventListener('click', function(event) {
+    if (event.target.classList.contains('increase-hp')) {
+        const hpSpan = event.target.parentElement.querySelector('.hp');
+        hpSpan.textContent = parseInt(hpSpan.textContent) + 1;
+    } else if (event.target.classList.contains('decrease-hp')) {
+        const hpSpan = event.target.parentElement.querySelector('.hp');
+        hpSpan.textContent = Math.max(0, parseInt(hpSpan.textContent) - 1);
+    }
+});
+
+// Death Saving Throw Success/Failure logic (players)
+document.getElementById('playerList').addEventListener('change', function(event) {
+    if (event.target.classList.contains('death-save-success') || event.target.classList.contains('death-save-fail')) {
+        const li = event.target.closest('li');
+        const successChecks = li.querySelectorAll('.death-save-success:checked').length;
+        const failChecks = li.querySelectorAll('.death-save-fail:checked').length;
+
+        // Alert if success or fail conditions are met
+        if (successChecks === 3) {
+            alert(`${li.textContent.split(' - ')[0]} has stabilized!`);
+        } else if (failChecks === 3) {
+            alert(`${li.textContent.split(' - ')[0]} has died!`);
+        }
+    }
+});
+
 //---------------------------------------------------------------------------------------//
-         // Add a new action to the action list
+// Add a new action to the action list
 document.getElementById('addActionBtn').addEventListener('click', function() {
     const action = prompt('Enter action taken:');
-        if (action) {
-            const newAction = document.createElement('li');
-            newAction.textContent = action;
-            document.getElementById('actionList').appendChild(newAction);
-            }
-        });
-        
-        // Remove action from the action list
-document.getElementById('actionList').addEventListener('click', function (event) {
-    if (event.target.classList.contains('removeActionBtn')) {
+    if (action) {
+        const newAction = document.createElement('li');
+        newAction.innerHTML = `
+            ${action}
+            <button class="remove-action">Remove</button>
+        `;
+        document.getElementById('actionList').appendChild(newAction);
+    }
+});
+
+// Remove an action from the action list
+document.getElementById('actionList').addEventListener('click', function(event) {
+    if (event.target.classList.contains('remove-action')) {
         const listItem = event.target.parentElement;
         listItem.remove();
     }
