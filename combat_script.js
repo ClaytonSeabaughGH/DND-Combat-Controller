@@ -96,7 +96,7 @@ document.getElementById('monsterList').addEventListener('click', function (event
 
 //------------------------------------------------------------------------------------------//
         // Add a new player
-        document.getElementById('addPlayerBtn').addEventListener('click', function() {
+document.getElementById('addPlayerBtn').addEventListener('click', function() {
     const name = prompt('Enter player name:');
     const hp = prompt('Enter player HP (current/total):');
     if (name && hp) {

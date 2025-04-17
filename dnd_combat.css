@@ -1,4 +1,4 @@
-
+/* #TODO Adjust the width of the columns for the page. The apply button for health appears below the name */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f4f4;
@@ -20,7 +20,7 @@ header {
 
 main {
     margin: 20px auto;
-    max-width: 900px;
+    max-width: 1600px;
     padding: 20px;
     background: white;
     border-radius: 12px;
@@ -45,25 +45,6 @@ main {
 .section:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-button {
-    background-color: #9b111e;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #b22222;
-    transform: translateY(-2px);
-}
-
-button:active {
-    transform: translateY(0);
 }
 
 .initiative-list li {

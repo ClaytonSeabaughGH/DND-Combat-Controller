@@ -7,7 +7,6 @@
 
 # Combat Round Section: Display the list of participants (players and NPCs) in order of initiative.
 # Current Turn: Highlight whose turn it is (maybe in a different color).
-# Health Bars: Show current health points with progress bars.
 # Action Logs: A section to display recent actions, including attacks, healing, and status changes.
 # Control Buttons: Buttons to end the round, move to the next turn, or add/remove combatants.
 
