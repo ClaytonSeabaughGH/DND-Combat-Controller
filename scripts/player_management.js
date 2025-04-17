@@ -49,3 +49,5 @@ document.getElementById('playerList').addEventListener('click', async (event) =>
     }
 });
 
+// Initial fetch of players
+fetchPlayers();
