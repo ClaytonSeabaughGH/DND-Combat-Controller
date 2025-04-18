@@ -26,4 +26,17 @@ git clone https://github.com/YOUR_USERNAME/dnd-combat-tracker.git
 cd dnd-combat-tracker
 ```
 
-### Install dependencies
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Initialize the database
+```bash
+node setup.js
+```
+
+### 4. Start the server
+```bash
+node app.js
+```
