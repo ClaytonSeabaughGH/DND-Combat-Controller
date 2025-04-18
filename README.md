@@ -22,5 +22,8 @@ A web-based Dungeons & Dragons initiative tracker and HP manager for players and
 ### 1. Clone the repository
 
 ```bash
-# git clone https://github.com/YOUR_USERNAME/dnd-combat-tracker.git
-# cd dnd-combat-tracker
+git clone https://github.com/YOUR_USERNAME/dnd-combat-tracker.git
+cd dnd-combat-tracker
+```
+
+### Install dependencies

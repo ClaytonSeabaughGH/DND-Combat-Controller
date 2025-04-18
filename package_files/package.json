@@ -2,7 +2,7 @@
   "name": "dnd-combat-controller",
   "version": "1.0.0",
   "description": "",
-  "main": "combat_script.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,13 +11,14 @@
     "url": "git+https://github.com/ClaytonSeabaughGH/DND-Combat-Controller.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Clayton Seabaugh",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ClaytonSeabaughGH/DND-Combat-Controller/issues"
   },
   "homepage": "https://github.com/ClaytonSeabaughGH/DND-Combat-Controller#readme",
   "dependencies": {
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "express3": "^5.0.0"
   }
 }
