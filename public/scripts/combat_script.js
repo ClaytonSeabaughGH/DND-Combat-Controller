@@ -155,13 +155,22 @@ document.getElementById('playerList').addEventListener('click', function(event) 
         const input = li.querySelector('.hp-input');
         const change = parseInt(input.value);
 
-        if (!isNaN(change)) {
-            const newHp = Math.max(0, parseInt(hpSpan.textContent) + change);
-            hpSpan.textContent = newHp;
-            input.value = ''; // Clear input after applying
+        // Get current HP value
+        const currentHp = parseInt(hpSpan.textContent);
+            
+        // Calculate new HP by adding/subtracting the entered value (ensuring HP does not go below 0)
+        const newHp = Math.max(0, currentHp + change); 
+        // Update the UI with the new HP
+        hpSpan.textContent = newHp;
+
+        // Send the new HP value to the server 
+        const playerId = li.getAttribute('data-id');
+        updatePlayerHp(playerId, newHp);
+
+        // Clear the input after applying the change
+        input.value = '';
         }
-    }
-});
+    });
 
 // Delegate HP increase and decrease functionality (players)
 document.getElementById('playerList').addEventListener('click', function(event) {

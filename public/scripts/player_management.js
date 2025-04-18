@@ -20,6 +20,29 @@ async function fetchPlayers() {
     });
 }
 
+// Event listener for the apply HP button
+document.getElementById('playerList').addEventListener('click', async (event) => {
+    if (event.target.classList.contains('apply-hp')) {
+        const playerId = event.target.getAttribute('data-id');
+        const playerItem = event.target.closest('li');
+        const hpSpan = playerItem.querySelector('.hp'); // The current HP span
+        const hpInput = playerItem.querySelector(`.hp-input[data-id="${playerId}"]`); // Input field
+        const change = parseInt(hpInput.value); // The value entered by the user
+
+        if (!isNaN(change)) {
+            const currentHp = parseInt(hpSpan.textContent); // Get the current HP value
+            const newHp = Math.max(0, currentHp + change); // Add or subtract the HP change, ensuring it doesn't go below 0
+            hpSpan.textContent = newHp; // Update the displayed HP
+
+            // Call the function to update the player's HP in the backend
+            await updatePlayerHp(playerId, newHp);
+        }
+
+        // Clear the input after applying the change
+        hpInput.value = '';
+    }
+});
+
 // Function to update a player's HP via backend
 async function updatePlayerHp(playerId, newHp){
     const response = await fetch('/update-player', {
@@ -35,19 +58,6 @@ async function updatePlayerHp(playerId, newHp){
         fetchPlayers(); // Reload the player list after updating
     }
 }
-
-// Event listener for the apply HP button
-document.getElementById('playerList').addEventListener('click', async (event) => {
-    if (event.target.classList.contains('apply-hp')) {
-        const playerId = event.target.getAttribute('data-id');
-        const hpInput = document.querySelector(`.hp-input[data-id="${playerId}"]`);
-        const newHp = parseInt(hpInput.value);
-
-        if (!isNaN(newHp)) {
-            await updatePlayerHp(playerId, newHp);
-        }
-    }
-});
 
 // Initial fetch of players
 fetchPlayers();
