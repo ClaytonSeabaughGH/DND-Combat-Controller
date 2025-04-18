@@ -40,3 +40,22 @@ node setup.js
 ```bash
 node app.js
 ```
+
+## 📁 Project Structure
+```graphql
+dnd-combat-tracker/
+├── public/
+│   ├── DNDCombat.html       # Main HTML UI
+│   ├── styles.css           # Optional styling
+│   └── player_management.js # UI interactivity & logic
+├── setup.js                 # Initializes and seeds the SQLite database
+├── app.js                   # Express server with API routes
+├── players.db               # SQLite database file (created after running setup)
+├── package.json             # Node.js project file
+└── README.md                # This file!
+```
+
+## 🧠 Notes
+- Customize players in setup.js or add your own via the frontend after setup.
+- Future ideas: monster database, initiative auto-sort, death saves tracking UI, sound effects for DM drama. 🎭
+- Works offline — ideal for in-person sessions!
