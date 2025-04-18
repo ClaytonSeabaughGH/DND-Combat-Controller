@@ -4,7 +4,7 @@ A web-based Dungeons & Dragons initiative tracker and HP manager for players and
 
 ---
 
-## 📂 Features
+## Features
 
 - Track initiative order and manage turns
 - Add/remove characters (players and monsters)
@@ -43,7 +43,9 @@ Pull latest update
 git pull
 ```
 
-## 🚀 Installation & Setup
+---
+
+## Installation & Setup
 
 ### 1. Clone the repository
 
@@ -81,12 +83,31 @@ dnd-combat-tracker/
 └── README.md                # This file!
 ```
 
-## 🧠 Notes
+## Notes
 - Customize players in setup.js or add your own via the frontend after setup.
 - Future ideas: monster database, initiative auto-sort, death saves tracking UI, sound effects for DM drama. 🎭
 - Works offline — ideal for in-person sessions!
 
-## ⚡ Tech Stack
-- Frontend: HTML, CSS, Vanilla JavaScript
+## Tech Stack
+- Frontend: HTML, CSS, JavaScript
 - Backend: Node.js + Express
 - Database: SQLite (using sqlite3 npm package)
+
+## Future Enhancements
+- Upgrade Persistent data storage (User Authentication and Profiles)
+    - User authentication with a login
+- Player UI to update character data (An interactive character sheet that updates the database)
+    - Create a UI element that allows players to update their characters/import their own stats
+    - This updates within the database that is also connected to the combat app
+- Advanced Attributes for Characters and Monsters 
+    - Armor class
+    - Character Stats(dex, strength, con, etc) 
+    - Allow users to update these as their characters level up
+- Tracking Buffs and De-buff 
+    - Create UI elements that show buffs/de-buffs on characters
+    - Integrate these attributes to automatically lower their stats, HP, or AC if affected
+- Monster Database
+    - Creation of a database has pre-made dnd monsters/npcs with adjustable levels
+- Export and Import data features
+    - Allow users to export their own campaign, player, or monster data to a file
+    - An import functionality to load external data into the application
