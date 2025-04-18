@@ -59,3 +59,8 @@ dnd-combat-tracker/
 - Customize players in setup.js or add your own via the frontend after setup.
 - Future ideas: monster database, initiative auto-sort, death saves tracking UI, sound effects for DM drama. 🎭
 - Works offline — ideal for in-person sessions!
+
+## ⚡ Tech Stack
+- Frontend: HTML, CSS, Vanilla JavaScript
+- Backend: Node.js + Express
+- Database: SQLite (using sqlite3 npm package)
