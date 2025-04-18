@@ -193,6 +193,11 @@ function handleHpChange(event, listId) {
 document.getElementById('playerList').addEventListener('click', function(event) {
     if (event.target.classList.contains('increase-hp') || event.target.classList.contains('decrease-hp')) {
         handleHpChange(event, 'playerList');
+        
+        // Send the new HP value to the server 
+        const playerId = li.getAttribute('data-id');
+        updatePlayerHp(playerId, newHp);
+
     }
 });
 
