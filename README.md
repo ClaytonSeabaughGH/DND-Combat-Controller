@@ -17,12 +17,38 @@ A web-based Dungeons & Dragons initiative tracker and HP manager for players and
 
 ---
 
+## Version Control
+This project uses Git for version control. You can clone the repository and contribute using the following steps:
+
+### Git Commands
+Cloning Repository
+```bash
+git clone https://github.com/ClaytonSeabaughGH/DND-Combat-Controller
+```
+Check current status
+```bash 
+git status
+```
+Commit changes
+```bash
+git add .
+git commit -m "Whatever you changed"
+```
+Push changes to remote repository
+```bash
+git push origin main
+```
+Pull latest update
+```bash
+git pull
+```
+
 ## 🚀 Installation & Setup
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dnd-combat-tracker.git
+git clone https://github.com/ClaytonSeabaughGH/DND-Combat-Controller
 cd dnd-combat-tracker
 ```
 
