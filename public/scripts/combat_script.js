@@ -172,25 +172,34 @@ document.getElementById('playerList').addEventListener('click', function(event) 
         }
     });
 
+// Function to handle HP increase/decrease for both players and monsters
+function handleHpChange(event, listId) {
+    const hpSpan = event.target.closest('li').querySelector('.hp');
+    let currentHp = parseInt(hpSpan.textContent);
+
+    if (isNaN(currentHp)) {
+        console.error('Invalid HP value');
+        return;
+    }
+
+    if (event.target.classList.contains('increase-hp')) {
+        hpSpan.textContent = currentHp + 1;
+    } else if (event.target.classList.contains('decrease-hp')) {
+        hpSpan.textContent = Math.max(0, currentHp - 1);
+    }
+}
+
 // Delegate HP increase and decrease functionality (players)
 document.getElementById('playerList').addEventListener('click', function(event) {
-    if (event.target.classList.contains('increase-hp')) {
-        const hpSpan = event.target.parentElement.querySelector('.hp');
-        hpSpan.textContent = parseInt(hpSpan.textContent) + 1;
-    } else if (event.target.classList.contains('decrease-hp')) {
-        const hpSpan = event.target.parentElement.querySelector('.hp');
-        hpSpan.textContent = Math.max(0, parseInt(hpSpan.textContent) - 1);
+    if (event.target.classList.contains('increase-hp') || event.target.classList.contains('decrease-hp')) {
+        handleHpChange(event, 'playerList');
     }
 });
 
 // Delegate HP increase and decrease functionality (monsters)
 document.getElementById('monsterList').addEventListener('click', function(event) {
-    if (event.target.classList.contains('increase-hp')) {
-        const hpSpan = event.target.parentElement.querySelector('.hp');
-        hpSpan.textContent = parseInt(hpSpan.textContent) + 1;
-    } else if (event.target.classList.contains('decrease-hp')) {
-        const hpSpan = event.target.parentElement.querySelector('.hp');
-        hpSpan.textContent = Math.max(0, parseInt(hpSpan.textContent) - 1);
+    if (event.target.classList.contains('increase-hp') || event.target.classList.contains('decrease-hp')) {
+        handleHpChange(event, 'monsterList');
     }
 });
 
